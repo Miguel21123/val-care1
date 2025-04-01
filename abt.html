@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            background-color: #fafafa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 4;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header img {
+            height: 70px;
+ margin: 1.5px;
+        }
+
+        .header-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-title h2, .header-title h3 {
+            margin: 5px 0;
+            font-weight: 600;
+        }
+.header-title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.header-title h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #2E8B57;
+            color: white;
+            padding: 20px 10px;
+            width: 150px;
+ align-items: center;
+margin-top: 25px;
+            position: fixed;
+            top: 50px;
+            left: 0;
+justify-content: space-evenly;
+            height: 100%;
+            box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+            border-top-right-radius: 20px;
+            transition: transform 0.3s ease;
+box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+z-index: 3;
+        }
+
+        .sidebar .icon-container {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            text-align: center;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .sidebar .icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar img {
+            width: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #2E8B57;
+            padding: 5px 10px;
+            border-radius: 5px;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar .icon-container:hover .tooltip {
+            display: block;
+        }
+        /* Content Area */
+   .content {
+    flex: 1;
+    padding: 40px;
+    margin-left: 170px;
+    border-top-left-radius: 20px;
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.3);
+    margin-top: 100px;
+    position: relative;
+    background: url('val.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white; /* Text color for readability */
+}
+
+.content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.85); /* White overlay with opacity */
+    z-index: 1; /* Keeps the overlay below the text */
+}
+
+.content > * {
+    position: relative;
+    z-index: 1; /* Keeps the text and content above the overlay */
+}
+
+
+
+
+      .profile-img {
+            width: 160px;
+            height: 160px;
+            background-color: #ddd;
+ background-image: url('docs_icon.jpg');
+ background-size: cover;
+    background-position: center;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .patient-info input, .minor-info input, .emergency-info input {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 2px solid #0a6839;
+            border-radius: 8px;
+        }
+        .patient-info, .minor-info, .emergency-info {
+            background-color: #e6f4ea;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .lock-button {
+            background-color: #0a6839;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .lock-button:hover {
+            background-color: #0d854d;
+        }
+.doctor-info {
+        background-color: #e6f4ea;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+    }
+    .doctor-info .profile-img {
+     width: 160px;
+            height: 160px;
+            background-color: #ddd;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      
+    }
+    .doctor-info h2 {
+        text-align: left;
+        color: #0a6839;
+        margin-bottom: 20px;
+    }
+    .doctor-info .details p {
+        margin: 5px 0;
+    }
+    .doctor-info hr {
+        border: 1px solid #0a6839;
+        margin: 15px 0;
+    }
+
+        h2a {
+            font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+color: #2E8B57;
+        }
+        .hotlines {
+            background: #e6f4ea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+
+        }
+        .hotlines ul {
+            list-style: none;
+            padding: 0;
+        }
+        .hotlines ul li {
+            padding: 5px 0;
+        }
+ /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                top: 100px;
+                left: -250px;
+                width: 100%;
+                height: 100%;
+            }
+
+            .sidebar.active {
+                left: 0;
+                width: 250px;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-left: 20px; margin-top: 50px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+        }
+.settings-container {
+            max-width: 800px;
+            margin: 40px auto;
+
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .setting {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .setting:last-child {
+            border-bottom: none;
+        }
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 1px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #388E3C;
+        }
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .header {
+    background: linear-gradient(135deg, #1B5E20, #0D3B15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .sidebar {
+    background-color: #1B5E20;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .doctor-info,
+.dark-mode .patient-info,
+.dark-mode .minor-info,
+.dark-mode .emergency-info {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .toggle-switch {
+    background: #555;
+    border: 2px solid #81C784;
+}
+
+.dark-mode .toggle-switch.active {
+    background: #81C784;
+}
+
+.dark-mode .setting span {
+    color: #e0e0e0;
+}   .content {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+            margin-left: 170px;
+            border-top-left-radius: 20px;
+            box-shadow: -3px 0 8px rgba(0, 0, 0, 0.3);
+            margin-top: 100px;
+        }
+
+        .content h2a {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            color: #2E8B57;
+            margin-bottom: 20px;
+        }
+
+        .content p, .content ul {
+            margin-bottom: 20px;
+            color: #555; /* Slightly darker text for readability */
+text-align: justify;
+        }
+
+        .content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .content ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #aaA; /* Subtle dividers */
+        }
+
+        .content ul li:last-child {
+            border-bottom: none;
+        }
+
+        .hotlines {
+            background: #e6f4ea;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .4);
+        }
+
+        .hotlines ul li {
+            padding: 10px;
+            border-bottom: 1px solid #d1e8d6;
+        }
+
+        .hotlines ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                top: 100px;
+                left: -250px;
+                width: 100%;
+                height: 100%;
+            }
+
+            .sidebar.active {
+                left: 0;
+                width: 250px;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-left: 20px;
+                margin-top: 50px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+        }
+
+>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+.audio-player {
+    background-color: #fff;
+    border-radius: 12px;
+ background: linear-gradient(135deg, #4CAF50, #2E8B57);
+z-index:3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, );
+    padding: 10px; /* Reduced padding */
+    width: 220px; /* Reduced width */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+    .audio-player:hover {
+      transform: translateY(-10px);
+    }
+
+    .audio-player .title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+    }
+
+    .audio-player audio {
+      width: 100%;
+      outline: none;
+      appearance: none;
+      background: transparent;
+    }
+
+    .audio-player .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .audio-player .controls button {
+      background-color: transparent;
+      border: none;
+      color: #888;
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .audio-player .controls button:hover {
+      color: #333;
+    }
+
+    .audio-player .controls input[type="range"] {
+      width: 100%;
+      background: #ddd;
+      border-radius: 8px;
+      height: 8px;
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .audio-player .controls input[type="range"]:hover {
+      background: #bbb;
+    }
+
+    .audio-player .progress-bar {
+      background: #4CAF50;
+      height: 5px;
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+
+ </style>
+
+    <script>
+        function toggleLock() {
+            const inputs = document.querySelectorAll('.patient-info input, .minor-info input, .emergency-info input');
+            const lockButton = document.getElementById('lockButton');
+            const isLocked = lockButton.innerText === "Unlock";
+
+            inputs.forEach(input => input.readOnly = isLocked);
+            lockButton.innerText = isLocked ? "Lock" : "Unlock";
+        }
+
+    </script>
+</head>
+<body>
+
+
+    <div class="container">
+      <div class="header">
+    <img src="doh_logo.png" alt="Valenzuela Logo">
+    <div class="header-title">
+        <h2>VAL-CARE</h2>
+        <h3>Department of Health</h3>
+        <h3>Help</h3>
+    </div>
+
+</div>
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="icon-container"><div class="tooltip">Log Out</div><img src="valenzuela_logo.png" alt="Logo"></div>
+                <div class="icon-container"><img src="profile_icon.png" alt="Profile"><div class="tooltip">Profile</div></div>
+
+                <div class="icon-container"><img src="doctor_icon.png" alt="Doctor's Info"><div class="tooltip">Doctor's Panel</div></div>
+
+                <div class="icon-container"><img src="documents_icon.png" alt="Documents and Prescription"><div class="tooltip">Documents</div></div>
+
+                <div class="icon-container"><img src="calendar_icon.png" alt="Calendar"><div class="tooltip">Calendar</div></div>
+                <div class="icon-container"><img src="help_icon.png" alt="Help"><div class="tooltip">Help</div></div>
+
+                <div class="icon-container"><img src="settings_icon.png" alt="Settings"><div class="tooltip">Settings</div></div>
+            </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.icon-container').forEach(function(container) {
+            container.addEventListener('click', function() {
+                const tooltipText = container.querySelector('.tooltip').innerText;
+
+                switch (tooltipText) {
+                    case 'Profile':
+
+                        window.location.href = 'basicinfo.html';
+                        break;
+                    case 'Doctor\'s Panel':
+                        window.location.href = "doctor's.html";
+                        break;
+                    case 'Documents':
+                        window.location.href = 'fileee.html';
+                        break;
+                    case 'Calendar':
+                        window.location.href = 'calendarpage.html';
+                        break;
+		    case 'Settings':
+			window.location.href = 'settings.html';
+                        break;
+case 'Log Out':
+			window.location.href = 'login.html';
+                        break;
+case 'Help':
+			window.location.href = 'abt.html';
+                        break;
+ default:
+                        console.log('Unknown section');
+                }
+            });
+        });
+    });
+</script>
+<div class="content">    <div class="container">
+        
+               <h2a>Addressing the Problem</h2a>
+            <p>Natural disasters, especially floods, pose a serious threat to physical medical records. These records can be easily lost, damaged, or rendered inaccessible during emergencies, putting patients at risk due to lack of medical history and vital information.</p>
+            
+            <h2a>Our Purpose</h2a>
+            <p>Val-Care is an online medical data storage system designed to safeguard patient information from physical damage. It ensures that medical records remain accessible even in times of disaster. This platform aids in medicine intake management, scheduling appointments, and securing patient history for efficient healthcare services.</p>
+            
+            <h2a>Key Features</h2a>
+            <ul>
+                <li><strong>Secure Data Storage:</strong> Encrypted cloud-based medical records for protection against data loss.</li>
+                <li><strong>24/7 Accessibility:</strong> Patients and healthcare providers can access records anytime, anywhere.</li>
+                <li><strong>Appointment Scheduling:</strong> Convenient booking and reminders for medical checkups.</li>
+                <li><strong>Medication Tracker:</strong> Helps patients manage their prescriptions and dosage schedules.</li>
+                <li><strong>Disaster-Ready System:</strong> Ensures that critical health information is not lost during calamities.</li>
+            </ul>
+            
+           
+
+            <h2a>Why Choose Val-Care?</h2a>
+            <p>With Val-Care, patients and healthcare providers can rely on a secure and efficient system to manage medical records. It not only improves accessibility but also enhances overall healthcare efficiency, especially during unforeseen events. By digitizing records, Val-Care provides a sustainable, long-term solution for medical data management in Valenzuela.</p>
+            
+            <h2a>Impact on the Community</h2a>
+            <p>Val-Care ensures that healthcare services remain uninterrupted despite disasters. By integrating modern technology with healthcare, it bridges the gap between medical professionals and patients, fostering a more resilient and prepared community.</p>
+ <h2a>Emergency Hotlines in Valenzuela</h2a>
+            <div class="hotlines">
+                <ul>
+                    <li><strong>Valenzuela City Emergency Hotline:</strong> 161</li>
+                    <li><strong>Valenzuela City Disaster Risk Reduction and Management Office:</strong> (02) 8352-5000</li>
+                    <li><strong>Valenzuela City Police Station:</strong> (02) 8292-1213</li>
+                    <li><strong>Valenzuela City Fire Station:</strong> (02) 8292-9999</li>
+                    <li><strong>Valenzuela City General Hospital:</strong> (02) 8292-1900</li>
+                    <li><strong>National Emergency Hotline:</strong> 911</li>
+                    <li><strong>Philippine Red Cross:</strong> 143 / (02) 8790-2300</li>
+                </ul>
+            </div>
+        </div></div></div>
+ <div class="audio-player">
+    <div class="title">Home Music</div>
+    <audio controls>
+      <source src="musicc.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+      </div>
+
+</body>
+
+</html>

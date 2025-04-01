@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Information Panel</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header img {
+            height: 70px;
+ margin: 1.5px;
+        }
+
+        .header-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-title h2, .header-title h3 {
+            margin: 5px 0;
+            font-weight: 600;
+        }
+.header-title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.header-title h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #2E8B57;
+            color: white;
+            padding: 20px 10px;
+            width: 150px;
+ align-items: center;
+
+            position: fixed;
+            top: 50px;
+            left: 0;
+justify-content: space-evenly;
+            height: 100%;
+            box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+            border-top-right-radius: 20px;
+            transition: transform 0.3s ease;
+box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+margin-top: 25px;
+
+        }
+
+        .sidebar .icon-container {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            text-align: center;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .sidebar .icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar img {
+            width: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #2E8B57;
+            padding: 5px 10px;
+            border-radius: 5px;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar .icon-container:hover .tooltip {
+            display: block;
+        }
+        /* Content Area */
+       .content {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+            margin-left: 170px;
+            border-top-left-radius: 20px;
+            box-shadow: -3px 0 8px rgba(0, 0, 0, 0.3);
+	margin-top: 100px;
+        }
+
+      .profile-img {
+            width: 160px;
+            height: 160px;
+            background-color: #ddd;
+ background-image: url('docs_icon.jpg');
+ background-size: cover;
+    background-position: center;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .patient-info input, .minor-info input, .emergency-info input {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 2px solid #0a6839;
+            border-radius: 8px;
+        }
+        .patient-info, .minor-info, .emergency-info {
+            background-color: #e6f4ea;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .lock-button {
+            background-color: #0a6839;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .lock-button:hover {
+            background-color: #0d854d;
+        }
+.doctor-info {
+        background-color: #e6f4ea;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    }
+    .doctor-info .profile-img {
+     width: 160px;
+            height: 160px;
+            background-color: #ddd;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      
+    }
+    .doctor-info h2 {
+        text-align: left;
+        color: #0a6839;
+        margin-bottom: 20px;
+    }
+    .doctor-info .details p {
+        margin: 5px 0;
+    }
+    .doctor-info hr {
+        border: 1px solid #0a6839;
+        margin: 15px 0;
+    }
+ /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                top: 100px;
+                left: -250px;
+                width: 100%;
+                height: 100%;
+            }
+
+            .sidebar.active {
+                left: 0;
+                width: 250px;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-left: 20px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+        }
+
+    </style>
+
+    <script>
+        function toggleLock() {
+            const inputs = document.querySelectorAll('.patient-info input, .minor-info input, .emergency-info input');
+            const lockButton = document.getElementById('lockButton');
+            const isLocked = lockButton.innerText === "Unlock";
+
+            inputs.forEach(input => input.readOnly = isLocked);
+            lockButton.innerText = isLocked ? "Lock" : "Unlock";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+      <div class="header">
+    <img src="doh_logo.png" alt="Valenzuela Logo">
+    <div class="header-title">
+        <h2>VAL-CARE</h2>
+        <h3>Department of Health</h3>
+        <h3>Doctor's Panel</h3>
+    </div>
+
+</div>
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="icon-container"><img src="valenzuela_logo.png" alt="Logo"><div class="tooltip">Log Out</div></div>
+                <div class="icon-container"><img src="profile_icon.png" alt="Profile"><div class="tooltip">Profile</div></div>
+
+                <div class="icon-container"><img src="doctor_icon.png" alt="Doctor's Info"><div class="tooltip">Doctor's Panel</div></div>
+
+                <div class="icon-container"><img src="documents_icon.png" alt="Documents and Prescription"><div class="tooltip">Documents</div></div>
+
+                <div class="icon-container"><img src="calendar_icon.png" alt="Calendar"><div class="tooltip">Calendar</div></div>
+
+                <div class="icon-container"><img src="help_icon.png" alt="Help"><div class="tooltip">Help</div></div>
+
+                <div class="icon-container"><img src="settings_icon.png" alt="Settings"><div class="tooltip">Settings</div></div>
+            </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.icon-container').forEach(function(container) {
+            container.addEventListener('click', function() {
+                const tooltipText = container.querySelector('.tooltip').innerText;
+
+                switch (tooltipText) {
+                    case 'Profile':
+                        window.location.href = 'basicinfo.html';
+                        break;
+                    case 'Doctor\'s Panel':
+                        window.location.href = "doctor's.html";
+                        break;
+                    case 'Documents':
+                        window.location.href = 'fileee.html';
+                        break;
+                    case 'Calendar':
+                        window.location.href = 'calendarpage.html';
+                        break;
+case 'Settings':
+			window.location.href = 'settings.html';
+                        break;
+case 'Log Out':
+			window.location.href = 'login.html';
+                        break;
+case 'Help':
+			window.location.href = 'abt.html';
+                        break;
+
+                }
+            });
+        });
+    });
+</script>
+              <div class="content">
+                <div class="doctor-info">    <div class="profile-img"></div>
+    <h2>Dr. JOHNNY SINS</h2>
+    <div class="details"> 
+        <p><strong>RECORDED APPOINTMENT DATE:</strong> [Enter details here]</p>
+  <hr>
+        <H3><strong>VITAL SIGNS OF THE PATIENT:</strong></H3>
+        <p><strong>WEIGHT:</strong> [Enter weight] <strong>HEIGHT:</strong> [Enter height]</p>
+        <p><strong>TEMPERATURE:</strong> [Enter temperature]</p>
+	<p><strong>PULSE RATE:</strong> [Enter temperature]</p>
+<p><strong>RESPIRATORY RATE:</strong> [Enter temperature]</p>
+<p><strong>BLOOD PRESSURE:</strong> [Enter temperature]</p>
+
+
+
+
+
+        <p><strong>DIAGNOSIS:</strong> [Enter diagnosis details]</p>
+        <hr>
+        <p><strong>CONTACT NO:</strong> [Enter contact number]</p>
+        <p><strong>SCHEDULE:</strong> [Enter schedule details]</p>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .header img {
+            height: 70px;
+ margin: 1.5px;
+        }
+
+        .header-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .header-title h2, .header-title h3 {
+            margin: 5px 0;
+            font-weight: 600;
+        }
+.header-title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.header-title h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #2E8B57;
+            color: white;
+            padding: 20px 10px;
+            width: 150px;
+ align-items: center;
+margin-top: 25px;
+            position: fixed;
+            top: 50px;
+            left: 0;
+justify-content: space-evenly;
+            height: 100%;
+            box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+            border-top-right-radius: 20px;
+            transition: transform 0.3s ease;
+box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .sidebar .icon-container {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            text-align: center;
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .sidebar .icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar img {
+            width: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            color: #2E8B57;
+            padding: 5px 10px;
+            border-radius: 5px;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar .icon-container:hover .tooltip {
+            display: block;
+        }
+        /* Content Area */
+       .content {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+            margin-left: 170px;
+            border-top-left-radius: 20px;
+            box-shadow: -3px 0 8px rgba(0, 0, 0, 0.3);
+	margin-top: 100px;
+        }
+
+      .profile-img {
+            width: 160px;
+            height: 160px;
+            background-color: #ddd;
+ background-image: url('docs_icon.jpg');
+ background-size: cover;
+    background-position: center;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .patient-info input, .minor-info input, .emergency-info input {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 2px solid #0a6839;
+            border-radius: 8px;
+        }
+        .patient-info, .minor-info, .emergency-info {
+            background-color: #e6f4ea;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .lock-button {
+            background-color: #0a6839;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .lock-button:hover {
+            background-color: #0d854d;
+        }
+.doctor-info {
+        background-color: #e6f4ea;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 20px;
+    }
+    .doctor-info .profile-img {
+     width: 160px;
+            height: 160px;
+            background-color: #ddd;
+            border: 4px solid #0a6839;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      
+    }
+    .doctor-info h2 {
+        text-align: left;
+        color: #0a6839;
+        margin-bottom: 20px;
+    }
+    .doctor-info .details p {
+        margin: 5px 0;
+    }
+    .doctor-info hr {
+        border: 1px solid #0a6839;
+        margin: 15px 0;
+    }
+ /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                top: 100px;
+                left: -250px;
+                width: 100%;
+                height: 100%;
+            }
+
+            .sidebar.active {
+                left: 0;
+                width: 250px;
+            }
+
+            .content {
+                margin-left: 0;
+                padding-left: 20px; margin-top: 50px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+        }
+.settings-container {
+            max-width: 800px;
+            margin: 40px auto;
+
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .setting {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .setting:last-child {
+            border-bottom: none;
+        }
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 1px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #388E3C;
+        }
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .header {
+    background: linear-gradient(135deg, #1B5E20, #0D3B15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .sidebar {
+    background-color: #1B5E20;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .doctor-info,
+.dark-mode .patient-info,
+.dark-mode .minor-info,
+.dark-mode .emergency-info {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.dark-mode .settings-container {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode .toggle-switch {
+    background: #555;
+    border: 2px solid #81C784;
+}
+
+.dark-mode .toggle-switch.active {
+    background: #81C784;
+}
+
+.dark-mode .setting span {
+    color: #e0e0e0;
+}    </style>
+
+    <script>
+        function toggleLock() {
+            const inputs = document.querySelectorAll('.patient-info input, .minor-info input, .emergency-info input');
+            const lockButton = document.getElementById('lockButton');
+            const isLocked = lockButton.innerText === "Unlock";
+
+            inputs.forEach(input => input.readOnly = isLocked);
+            lockButton.innerText = isLocked ? "Lock" : "Unlock";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+      <div class="header">
+    <img src="doh_logo.png" alt="Valenzuela Logo">
+    <div class="header-title">
+        <h2>VAL-CARE</h2>
+        <h3>Department of Health</h3>
+        <h3>Doctor's Panel</h3>
+    </div>
+
+</div>
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="icon-container"><div class="tooltip">Log Out</div><img src="valenzuela_logo.png" alt="Logo"></div>
+                <div class="icon-container"><img src="profile_icon.png" alt="Profile"><div class="tooltip">Profile</div></div>
+
+                <div class="icon-container"><img src="doctor_icon.png" alt="Doctor's Info"><div class="tooltip">Doctor's Panel</div></div>
+
+                <div class="icon-container"><img src="documents_icon.png" alt="Documents and Prescription"><div class="tooltip">Documents</div></div>
+
+                <div class="icon-container"><img src="calendar_icon.png" alt="Calendar"><div class="tooltip">Calendar</div></div>
+
+                <div class="icon-container"><img src="help_icon.png" alt="Help"><div class="tooltip">Help</div></div>
+
+                <div class="icon-container"><img src="settings_icon.png" alt="Settings"><div class="tooltip">Settings</div></div>
+            </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.icon-container').forEach(function(container) {
+            container.addEventListener('click', function() {
+                const tooltipText = container.querySelector('.tooltip').innerText;
+
+                switch (tooltipText) {
+                    case 'Profile':
+                        window.location.href = 'basicinfo.html';
+                        break;
+                    case 'Doctor\'s Panel':
+                        window.location.href = "doctor's.html";
+                        break;
+                    case 'Documents':
+                        window.location.href = 'fileee.html';
+                        break;
+                    case 'Calendar':
+                        window.location.href = 'calendarpage.html';
+                        break;
+		    case 'Settings':
+			window.location.href = 'settings.html';
+                        break;
+case 'Log Out':
+			window.location.href = 'login.html';
+                        break;
+case 'Help':
+			window.location.href = 'abt.html';
+                        break;
+
+ default:
+                        console.log('Unknown section');
+                }
+            });
+        });
+    });
+</script>
+              <div class="settings-container">
+    <h2>Settings</h2>
+    
+    <div class="setting-section">
+        <h3>Account Settings</h3>
+        <label>Email:</label>
+        <input type="email" placeholder="Enter your email">
+        <label>Change Password:</label>
+        <input type="password" placeholder="New password">
+        <button>Update</button>
+    </div>
+    
+    <div class="setting-section">
+        <h3>Privacy & Security</h3>
+        <label>
+            <input type="checkbox"> Enable Two-Factor Authentication
+        </label>
+        <label>
+            <input type="checkbox"> Make Profile Private
+        </label>
+    </div>
+    
+    
+    <div class="settings-container">
+        <div class="setting">
+            <span>Enable Notifications</span>
+             <div id="a" class="toggle-switch"></div>
+
+        </div>
+        <div class="setting">
+    <span>Dark Mode</span>
+    <div id="darkModeToggle" class="toggle-switch"></div>
+</div>
+        <div class="setting">
+            <span>Privacy Settings</span>
+            <button class="btn">Manage</button>
+        </div>
+        <div class="setting">
+            <span>Account Security</span>
+            <button class="btn">Update</button>
+        </div>
+    </div>
+    <script>
+ document.addEventListener("DOMContentLoaded", function() {
+    const toggleSwitch = document.getElementById("darkModeToggle");
+    const body = document.body;
+
+    // Check if dark mode is enabled in local storage
+    if (localStorage.getItem("darkMode") === "enabled") {
+        body.classList.add("dark-mode");
+        toggleSwitch.classList.add("active");
+    }
+
+    toggleSwitch.addEventListener("click", function() {
+        body.classList.toggle("dark-mode");
+        toggleSwitch.classList.toggle("active");
+
+        // Save user preference in local storage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+        }
+    });
+});
+    </script>    <script>
+ document.addEventListener("DOMContentLoaded", function() {
+    const toggleSwitch = document.getElementById("a");
+    const body = document.body;
+
+    // Check if dark mode is enabled in local storage
+    if (localStorage.getItem("darkMode") === "enabled") {
+  
+        toggleSwitch.classList.add("active");
+    }
+
+    toggleSwitch.addEventListener("click", function() {
+    
+        toggleSwitch.classList.toggle("active");
+
+        // Save user preference in local storage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+        }
+    });
+});
+    </script>
+
+</body>
+
+</html>
