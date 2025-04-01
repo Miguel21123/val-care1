@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Panel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Baskerville&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: url('val.jpg') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            position: relative;
+            padding: 0 10px;
+        }
+
+        /* Dark overlay for better text visibility */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+
+        .login-box {
+            background-color: #fff;
+            width: 400px;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .login-box:hover {
+            transform: scale(1.05);
+        }
+
+        .header {
+            color: #fff;
+            padding: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Baskerville', serif;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .header img {
+            height: 50px;
+            margin: 5px;
+        }
+
+        .header h2 {
+            font-size: 37px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .header h3 {
+            font-size: 17px;
+            margin: 5px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-panel {
+            padding: 20px;
+        }
+
+        .login-panel label {
+            display: block;
+            text-align: left;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .login-panel input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        .login-panel input:focus {
+            border-color: #02732A;
+            outline: none;
+        }
+
+        .login-panel button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .login-panel button:hover {
+            opacity: 0.9;
+        }
+
+        .footer {
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Specific Colors */
+        .patient-header, .patient-footer, .patient-panel button { background-color: #02732A; }
+        .doctor-header, .doctor-footer, .doctor-panel button { background-color: #1E3A8A; }
+
+        /* Forgot Password */
+        .forgot-password {
+            display: block;
+            text-align: right;
+            font-size: 14px;
+            margin: 5px 0;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Patient Login -->
+        <div class="login-box">
+            <div class="header patient-header">
+                <div>
+                    <img src="valenzuela_logo.png" alt="Valenzuela Logo">  
+                    <img src="doh_logo.png" alt="DOH Logo">  
+                </div>
+                <h2>VAL-CARE</h2>
+                <h3>Department of Health</h3>
+                <h2>Patient Login</h2>
+            </div>
+            <div class="login-panel patient-panel">
+                <form action="basicinfo.html" method="POST">
+                    <label for="patient-email">Email:</label>
+                    <input type="email" id="patient-email" name="email" placeholder="Enter your email" required aria-label="Email Address">
+                    <label for="patient-password">Password:</label>
+                    <input type="password" id="patient-password" name="password" placeholder="Enter your password" required aria-label="Password">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+            <div class="footer patient-footer">
+                <p>📞 Emergency Hotline: 8-352-5000</p>
+                <p>🚔 Police: 117 | 🔥 Fire: 160</p>
+                <p>🏥 Valenzuela City Emergency Hospital: (02) 8292-1000</p>
+            </div>
+        </div>
+
+        <!-- Doctor Login -->
+        <div class="login-box">
+            <div class="header doctor-header">
+                <div>
+                    <img src="valenzuela_logo.png" alt="Valenzuela Logo">  
+                    <img src="doh_logo.png" alt="DOH Logo">  
+                </div>
+                <h2>VAL-CARE</h2>
+                <h3>Department of Health</h3>
+                <h2>Doctor Login</h2>
+            </div>
+            <div class="login-panel doctor-panel">
+                <form action="basicinfo.html" method="POST">
+                    <label for="doctor-email">Email:</label>
+                    <input type="email" id="doctor-email" name="email" placeholder="Enter your email" required aria-label="Email Address">
+                    <label for="doctor-password">Password:</label>
+                    <input type="password" id="doctor-password" name="password" placeholder="Enter your password" required aria-label="Password">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+            <div class="footer doctor-footer">
+                <p>📞 Emergency Hotline: 8-352-5000</p>
+                <p>🚔 Police: 117 | 🔥 Fire: 160</p>
+                <p>🏥 Valenzuela City Emergency Hospital: (02) 8292-1000</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let button = this.querySelector("button");
+        button.innerHTML = "Logging in...";
+        button.disabled = true;
+
+        // Check if the form is inside the doctor panel
+        let redirectPage = this.closest(".doctor-panel") ? "doctorpage.html" : "abt.html";
+
+        setTimeout(() => {
+            window.location.href = redirectPage;
+        }, 3000);
+    });
+});
+    </script>
+</body>
+</html>
